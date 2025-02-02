@@ -1,0 +1,51 @@
+* Chapter 2: Operating System Overview
+    ** Student Lecture 1 [2025-2-03 Mon]
+        *** Operating System
+          - a program that controls the execution of application programs
+          - an interface between applications and hardware
+          - main objectives of an OS: convenience (makes a computer easy to use), efficiency (computer system resources used effectively), 
+            ability to evolve (system can update and evolve through patches and development of new system functions)
+
+        *** Computer Hardware and Software Structure
+          - the computer has a software and hardware side. we learned from CH1 that the different sections of hardware work together to 
+            be more efficient. software is the same.
+          - application programs use libraries/utilities through programming interfaces, and libraries/utilities use the binary interface
+            to communicate with the OS. the OS then communicates with the hardware through the instruction
+            set architecture we learned in CH1. (fetch/execute, interrupts, etc.)
+          - easier to understand: users interact with the computer through applications. these applications are developed by programmers that 
+            use programming languages. these programmers use existing utilities and libraries to assist in creating those applications. to mask 
+            the hardware aspect to programmers, the OS is a more convenient interface to use the system. the OS also makes it easier for applications
+            to access. think of it as the last layer before things get complex.
+        
+        *** Operating System Services
+          - Program development: supplied with the OS, and are application program development tools such as editors and debuggers
+            used to assist programmers
+          - Program execution: the OS handles scheduled duties such as loading instructions and data into the main memory, intitializing I/O 
+            devices and files, and preparing other resources to execute programs
+          - Access I/O devices: the OS provides an interface for programmers to access I/O devices using simple reads and writes. each I/O
+            device has their own set of instructions or controls so without the OS, it wouldn't be as simple.
+          - Controlled access to files: the OS understands the structure of data and nature in I/O devices such as disk drives to control access.
+            the OS also provides a protective mechanism to control the access to files in the case of multiple users
+          - System access: the OS controls access to the system, providing protection of data and resources from unauthorized users
+          - Error detection and response: device errors and software errors such as memory failure or division by zero cause errors 
+            so the OS provides a service that can end, retry, or report the issue to the application, therefore clearing the error.
+          - Accounting: the OS collects usage statistics and monitors the performance to allow for future performance enhancements.
+
+          Key Interfaces:
+          - Instruction set architecture (ISA): the ISA is the boundary between the software and the hardware. it is the commands that 
+            a CPU can understand and execute. a model of the language instructions that a computer can follow. programs and applications can
+            directly access the ISA through a subset of instructions (user ISA). the OS has access to the ISA through (system ISA) to manage
+            system resources
+          - Application binary interface (ABI): defines a standard for binary portabilty across programs. defines the system call interface
+            to the OS (a way for applications to request services from the OS), and the hardware and software resources available 
+            in a system through user ISA.
+          - Application programming interface (API): gives a program access to the hardware resources and services available through user ISA.
+            these are supplemented through high-level language library calls (HLL). using API allows for easy port (restoration) to other systems. 
+
+        *** The Operating System as a Resource Manager
+          - the OS is responsible for controlling the computer's resources such as the I/O, main and secondary memory, and processor execution time
+          - the OS functions in the same way as ordinary computer software; like a program executed by the processor
+          - OS frequently relinquinshes control, and depends on the processor to allow it to regain control
+          - processor ceases executing the OS program, and the OS does other work. evnetually the OS resumes control to continue work. 
+          - main resources are managed by the OS through kernel or nucleus which is the main function to control and manage resources and hardware.
+     

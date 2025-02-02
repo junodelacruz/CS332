@@ -1,0 +1,147 @@
+* Chapter 1: Computer System Overview
+    ** Professor Lecture 1 [2025-1-23 Thu]
+        *** Bits
+            - 0's and 1's
+            - power of 2's
+
+            - binary to decimal conversion: use power of 2's 2^3 2^2 2^1 2^0
+            - EX. 1101: 8 + 4 + 0 + 1 = 13
+            
+            - decimal to binary conversion: use table
+            - EX. 234 
+                1. choose largest two's power that is smaller than the number: 128
+                2. fill in corresponding digit, subtract 128 from the original number: 234 - 128 = 106
+                3. repeat step 1 and 2 until you get 0
+                4. answer: 11101010
+        *** Hexadecimal
+            - 0 1 2 3 4 5 6 7 8 9, A(10) B(11) C(12) D(13) E(14) F(15) 
+            - power of 16's
+
+            - hex to decimal: use power of 16's 16^0 16^1 16^2 16^3
+            - EX. B2E: (11 x 16^2) + (2 x 16^1) + (14 x 16^0) = 2862
+
+            - decimal to hex: successive division
+            - EX. 429
+                1. divide by 16: 26
+                2. remainder is: 13 and answer is: 26. if answer is larger than 16 do a second division by 16
+                3. answer is: 1 and remainder is: 10. transfer to hexadecimal
+                4. (1 x 16^2) + (10 x 16^1) + (13) = 1AD
+                    ^answer      ^remainder    ^remainder
+
+            - hexadecimal arithmetic is simple addition and subtraction like normal. letters become their respective numbers
+
+    ** Professor Lecture 2 [2025-1-27 Mon]
+        *** Data Representation in Computers
+            - storage cells in computers can either store a 0 or 1 based on low or high voltage respectively. each cell is a bit
+            - eight bits grouped together forms a byte. each byte has 256 different combinations 2^8
+            - several bytes together can form a word. EX. 32 or 64 bit computers. 
+            - ASCII is the standard way in computers to represent characters
+
+        *** Memory and storage
+            - kilobyte = 1024 bytes = 2^10 thousand
+            - megabyte = approx. 1,000,000 bytes = 2^20 million
+            - gigabyte = approx. 1,000,000,000 bytes = 2^30 billion
+            - terabyte = 2^40 trillion
+            - petabyte = 2^50 
+            - exabyte = 2^60
+            - zettabyte = 2^70
+            - yottabyte = 2^80
+
+            - C:\Users\junod\Desktop\Schoo\Second Year\Second Sem\CS332\Notes\CH1 Memory and Storage Hierarchy.png
+            - when speed is higher, cost is higher, and size is smaller (ram)
+            - when speed is slower, cost is cheaper, and size is larger (ssd)
+            - the cpu has a storage inside of it called the register that stores instructions
+
+            - the cpu cache between the register and the ram memory helps to make the system run faster
+            - cache memory is slower than the cpu but faster than the ram. it is a physical device built into the cpu.
+            - if the cache is closer to the cpu physically it has faster speeds. that is why companies have moved their level 2 and level 3
+              caches into their cpus
+            - cpu accesses memory from the cache. if not there, the cache accesses from the memory. there is no skipping the cache.
+            - a cache hit is when the data needed from the cpu is in the cache. a cache miss is when the data needs to be accessed from the 
+              memory thus causing a time delay
+            - hit ratio is the percentage of all memory accesses that are found in the cache
+    
+    ** Student Lecture 1 [2025-1-30 Thu]
+        *** CPU vs GPU
+            - CPU is for general computation and can be used for most things. GPU is for specialized computational purposes, not general purposes
+            - processes multiple things whereas CPU does things mostly one by one
+
+        *** Basic Elements and Microprocessors
+            - Processor: CPU, performs all data processing functions, transforms data into usable information, controls operation of computers
+            - Memory: RAM, primary memory for communication between processor and storage, stores data and proograms, memory is lost on shutdown
+            - HDD SDD: stores data and moves data between computer and external environment
+            - System bus: allows communication between processor, main memory, and I/O modules over a single channel through the motherboard
+        
+        *** Microprocessors
+            - Evolution: initially slower than multichip processors, each chip in a miicroprocessor is called a socket, every chip contains
+              a processor (cores), moore's law (every 2 years number of transistors doubled meaning every microprocessor gets smaller and increases
+              in power and speed)
+        
+        *** GPUs
+            - useful for AI computation
+            - utilizes single instruction multiple data techniques. multiple data sets being processed by CPU, GPU helps
+            - capable of parallel processing and physics simulations rather than just graphics rendering
+
+        *** Digital Signal processors
+            - process signals like audio, video, temperature, and pressure
+            - most common conversion is analog to Digital
+            - primary use is to do mathematical operations on signals in digital form
+            - can remove noise from an audio signal or amplify frequencies
+        
+        *** Instruction Execution
+            - program is a sequence of instructions stored in memory
+            - fetch and execute: read instructions then execute
+            - instructions stored in CPU register for faster processing, if not then stored in RAM or storage
+
+        *** Interrupts
+            - interrupt is an interruption of the processor's routine to handle another set of instructions at a given time
+            - common types: program, I/O, timer, hardware failure
+            - process: device signals to interrupt, processor finishes current instruction and saves, tests for pending request, and then program
+              is handed over to interrupt routine which saves everything and interrupts device, if not processor goes back to what it was doing
+            - multiple interrupts: sequential approach mid (disables interrupts while other is being processed) 
+              nested approach better (priority controller)
+            - devices send interrupts like mice, keyboard, etc. tells the CPU to stop and input data
+        
+        *** Memory Hierarchy
+            - hierarchy used to maximize total performance in system for storage and speeds
+            - based on speed, cost, and capacity (size)
+            - cpu less involved as you move down the hierarchy
+            - seconodary memory (auxiliary memory): data stored doesn't get lost on shutdown (ssd, hdd)
+            - locality: recently accessed data is likely to be used again soon
+        
+        *** Cache Memory
+            - invisible to the OS 
+            - interacts with other memory management hardware
+            - processor must access memory a least once per instruction cycle
+            - sole purpose is to make processing speeds of the CPU faster
+            - middleman that speeds things up between RAM and CPU
+            - fast because of the principle of locality (data already used will be prepared to be sent again soon)
+            - temporal locality (locality in time)
+            - spatial locality (locality in space)
+
+        *** Mapping functions
+            - determines which cache location the block will occupy for the three levels of cache memory
+            - good for flexibility
+
+        *** Replacement algorithm
+            - LRU algorithm is to replace a block that has been in the cache the longest with something more useful
+        
+        *** Write policy
+            - cache copies from the RAM, this policy dictates when the memory write operation takes place
+            - can occur every time the block of data is updated
+            - can occur when the block is replaced (minimizes write operations but leaves main memory in an obsolete state)
+
+        *** I/O techniques
+            - programmed I/O: severely degraded performance. doesnt let the CPU know when it is done with I/O operation so CPU has to 
+              keep checking. puts CPU into a loop
+            - interrupt driven I/O: more efficient than programmed I/O but not as great because pauses. leave and come back when I/O is 
+              done, known by sending a signal. CPU does something else.
+            - direct memory access: most efficient. once processor recieves command, sends it to DMA and DMA handles everything from 
+              reading and writing and then sends data into where it needs to go after telling the processor. DMA takes the 
+              load off of the CPU by being the module that sends data between memory and storage (hardware) 
+
+        *** Parallelism and Symmetric Multiprocessors
+            - data parallelism: distributes subsets of data across multiple processors for simultaneous processing
+            - task parallelism: distributes different tasks across multiple processors for concurrent processing
+            - allows for faster calculations
+            - symmetric multiprocessors allows for multiple tasks and calculations done at the same time
