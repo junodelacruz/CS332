@@ -5,6 +5,10 @@
           - an interface between applications and hardware
           - main objectives of an OS: convenience (makes a computer easy to use), efficiency (computer system resources used effectively), 
             ability to evolve (system can update and evolve through patches and development of new system functions)
+          - important resources that the OS manages: 1. CPU processing time 2. memory and storage 3. communication (wifi)
+          - good resource manager for applications (run applications faster) efficiency
+          - OS is convenient for being a user interface 
+          - evolution: has to be easy to evolve, easy to code from a programming perspective
 
         *** Computer Hardware and Software Structure
           - the computer has a software and hardware side. we learned from CH1 that the different sections of hardware work together to 
@@ -48,4 +52,95 @@
           - OS frequently relinquinshes control, and depends on the processor to allow it to regain control
           - processor ceases executing the OS program, and the OS does other work. evnetually the OS resumes control to continue work. 
           - main resources are managed by the OS through kernel or nucleus which is the main function to control and manage resources and hardware.
-     
+        
+        OS evolution/history:
+
+        *** Serial Processing
+          - the earliest form of computing with no operating system. programmers had to directly interact with the hardware one by one
+          - problem because time consuming and therefore inefficient
+
+        *** Simple Batch Systems
+          - improved compared to serial processing where groups worked together and executed things sequentially
+          - introduced a new language (JCL job control language)
+          - improved utilization and reduced setup time
+          - however, monitor consumed some processor time
+          - can cause delays if batch doesnt work
+
+        *** Multiprogrammed Batch Systems
+          - uniprogramming is inefficient because wasted CPU time by waiting for instructions
+          - solution: multiprogrammed batch systems
+          - uses multiple programs where each program has their own runtime and job, when the CPU waits it checks for a different instruction and 
+            performs it for better efficiency
+          - more complex because introduces many programs rather than just one program
+          - increased throughput meaning more efficient
+
+        *** Time Sharing System
+          - time slicing that splits the CPU time into sections for users
+          - each user is given 0.2 seconds of CPU time, allows for many users to run programs so that everyone has a fair share of CPU time
+          - causes inefficiency
+          - data for each user each 0.2 seconds data is uploaded to disk, so that no data is lost. users can use this CPU time and data saving to use
+            the computer.
+        
+        *** Processes
+          - a program in execution, an instance of a program that is running
+
+        *** Components of a processing
+          - executable program
+          - associated data needed for the program to execute
+          - the execution contex/progress state of the program
+
+        *** Process management
+          - typical process implementation: ram has a process last as well as the context, data, and code for each process
+          - CPU register has limited information about which process it is executing
+
+        *** Causes of process errors
+          - improper synchronization: multiple processes trying to modify data
+          - failed mutual execution
+          - non determinate program operations
+          - deadlocks
+
+        *** Support of modular prograrmming
+          - allows developers to program easily
+
+        *** Virtual memory
+          - memory management technique 
+          - paging: processes are made up of fixed sized blocks called pages that allows for dynamic mapping
+          - allows for data transfer between ram and second memory
+
+        *** Information protection and security
+          - the type of threat faced will vary and depends on the organization
+          - availability, confidentiality, integrity, and authenticity
+          
+        *** Windows executive
+          - kernal mode components that provide services to device driverse
+          - secuirty provided by SRM (security reference monitor)
+
+        *** Scheduling and resource management
+          - resource allocation policies: 
+            - fairness: fair share of system resources
+            - differential responsiveness: the OS should allocate resources based on the priority and urgency of processes
+            - efficiency: OS maximizes resources without any wasted
+
+        *** Different OS architectural approaches
+          - microkernel: simplifies implementation, provides flexibility, well suited to a distributed environment
+          - multithreading: a process are divided into multiple threads that can run concurrently
+          - symmetric multiprocessing: multiple processeors share memory and OS resources (AMD and Intel use SMP)
+            - good for performance, each process can run simultaneously on different processors
+            - availability, of one fails the other continues to run
+            - growth and scaling: easy to upgrade and scaling
+          - distributed operating systems: 
+          - object oriented design
+
+        *** Fault tolerance
+          - the ability of a system to keep running when a failure happens
+          - increases system reliability by ensuring continued operation even when errors occur
+          - metrics: reliability (probability of correct operation to a specific time), mean time to failure, mean time to repair, availaibilty
+            (the fraction of time that the system is available) 
+          - high MTTF and low MTTR 
+          - types of faults: component failure, operator error, physical interference, design error, program error, and data structure error
+            - permanent faults and temporary faults
+          - fault tolerance has redundancy in the form of spatial, temporal faults, and Information
+          - the OS supports fault tolerance through methods like process isolation, concurrency controls, etc.
+          - the multiprocessor OS design allows for handling of multiple processes
+            - key design: concurrent processes, scheduling, synchronization, etc.
+          - multiprocessors need careful OS design to prevent faults
