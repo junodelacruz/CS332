@@ -144,3 +144,16 @@
           - the multiprocessor OS design allows for handling of multiple processes
             - key design: concurrent processes, scheduling, synchronization, etc.
           - multiprocessors need careful OS design to prevent faults
+
+    ** Professor Lecture 1 [2025-2-6 Thu]
+      *** Instructions of a Hypothetical Machine
+        - instruction format: every instruction has two parts, an opcode and an address
+        - opcode has 4 bits and address has 12 bits
+        - opcode is a number in bits that tells the computer what to do (read,etc.)
+        - address of an instruction is the second part that shows where to perform the opcode action
+        - ex. 0001 = load AC from memory, 0010 = store AC to memory, 0101 = add to AC from memory
+        - when doing binary like 2^12, split into 2^10 * 2^2 and remember that 2^10 = 1024.
+        - 3 registers: program counter (PC address of instruction), instruction register (IR instruction being executed), 
+          accumulator (AC temporary storage registers)
+        - refer to slides for image of example of program execution and fetching between memory and CPU registers
+        - slide titled instruction cycles is gonna be on the exam/midterm 
