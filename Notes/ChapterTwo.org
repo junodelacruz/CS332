@@ -157,3 +157,4 @@
           accumulator (AC temporary storage registers)
         - refer to slides for image of example of program execution and fetching between memory and CPU registers
         - slide titled instruction cycles is gonna be on the exam/midterm 
+        

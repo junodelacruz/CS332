@@ -1,0 +1,66 @@
+* Chapter 3: Process Description and Control
+    ** Student Lecture [2025-2-10 Mon]
+        *** Process and Process States
+            - processes: consists of a number of elements with the 2 essential being the program code and the set of data associated with the code
+            - a process allows a program to run
+            - process characterized by: identifier, state, priority, program couonter, memory pointers, context data, IO status information, and accounting information
+            - process control blocks: elements are stored in an important data structure created and managed by the OS
+            - allows for multiprocessing and execution of multiple processes
+            - a trace is a list of the sequence of instructions used to characterize behavior
+            - a dispatcher isa small program responsible for switching between processes
+            - a state refers to the condition of a process
+            - 2 state model: not running or running. when a process is created, a program control block is created and the process enters a not running state,
+              when it is interrupted, it is also not running. 
+            - 2 state model uses a queue that stores pointers to process control block
+            - process state creation: process spawning is when a process requests the operating system to create another process
+            - 5 state model: new process becomes ready and dispatched to become running, once it is done it releases and exits, 
+              or it can get interrupted by a timeout and wait for another event to occur, then go back to running
+            - suspended processes: swapping is when the process or part of it is moved from the main memory to the disk
+            - a program is made up of code, and data. additionally, it has a stack where computation results are stored. LIFO (last in first out)
+            - PCB (program control block contains): PID, PC, and priority data needed by the OS to support the program. the data in the PCB is all meta data
+
+        *** Process Control
+            - modes of creation:
+                - user mode: less priviledged, user processes and applications run in this mode. restricted access. 
+                - system mode: more priviledged, kernel mode. used to remap memory, write to storage media, and to enable or disaable hardware
+                - to switch between modes, the application running in user mode requests the OS to switch to system mode to for example save a file
+            - process creation: 
+                - process spawning, the OS creates a process at the explicit request of another process
+                - process is assigned a unique identifier, space is allocated for the process, the process 
+                  control block is initizlized, the appropriate linkages are set, and any data structures are expanded or created
+                - reasons for creation of processes: new batch job, interactive log-on, etc.
+                - for every application and program, the OS creates the same container for the programs, and generalizes the processes to make management easier
+                    - analogy: when movers move the furniture in a home, they give you boxes of the same size so that everything can fit in the car
+            - process control:
+                - fork()
+                - counters for any files owned by the parent are incremented to reflect that additional processes now also own those files
+                - after fork(), the parent process can stay, the control can transfer to the child, or the control can be transferred to another process
+            - process switching: (happens on CPU to off CPU)
+                - useful for multitasking and reponsiveness, allows for multiple programs to run
+                - during a switch, the OOS saves the state of the current running process, then the OS loads the context of the next 
+                  process that is scheduled to run, then the CPU resumes execution of the newly loaded process
+                - advantages: better CPU utilization
+                - disadvantages: context switching overhead, which is when time is spent loading and saving contexts but does not perform any useful work
+                - mode switching: triggered by interrupts or system calls (switching from driver seat to passenger seat)
+                - process switching: (switching from car to car)
+            - context overhead:
+                - when the CPU switches from one process to another, the OS must save the process's contet and then load a new process
+            - scheduling overhead:
+                -  predicting the next process to run/schedule to save time. processes are predicted by algorithms, with things like priority queues.
+            
+        *** Execution of Operating Systems
+            - nonprocess kernel: 
+                - executes the ernal outside of any processes, OS has its own memory that controls calls and returns
+                - handles memory management, hardware execution, and interrupt handling
+                - OS can restore the context of the interrupted process
+            - introducing process image:
+                - a process image is the representation of a process in memory, containing all information needed for execution
+            - process control block
+                - a data structure that stores all essential information about a process
+            - user space:
+                - memory area where user applications run
+                - executes user programs and manages application level tasks
+                - makes sure that when a program crashes it doesnt affect other programs
+        
+        
+
