@@ -157,4 +157,18 @@
           accumulator (AC temporary storage registers)
         - refer to slides for image of example of program execution and fetching between memory and CPU registers
         - slide titled instruction cycles is gonna be on the exam/midterm 
+      
+    ** Professor Lecture 2 [2025-2-13 Thu]
+      *** Application Binary Interfaces
+        - defines system calls which are used by the kernal to access system resources
+        - the reason for system calls is for an extra layer of protection because we need to manage programs accessing the system resources
+        - system calls became a thing when time sharing was still relevant in the earlier days of computing, people would hack and access other's memory,
+          and they would even make their time share on the main computer longer. the use of system calls prevents this, because each person needs to 
+          go through another layer or protection.
+      
+      *** Multiprogramming example
+        - two types of jobs the os needs to handle: heavy computing (cpu intensive) and heavy io (io intensive)
+          - cpu intensive could be computing a 100x100 matrix 
+          - io intensive could be reading and writing a lot of data to rewrite a data table/database
+        
         
