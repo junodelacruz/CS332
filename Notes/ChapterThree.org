@@ -1,5 +1,5 @@
 * Chapter 3: Process Description and Control
-    ** Student Lecture [2025-2-10 Mon]
+    ** Student Lecture 1 [2025-2-10 Mon]
         *** Process and Process States
             - processes: consists of a number of elements with the 2 essential being the program code and the set of data associated with the code
             - a process allows a program to run
