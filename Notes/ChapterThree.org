@@ -7,7 +7,7 @@
             - process control blocks: elements are stored in an important data structure created and managed by the OS
             - allows for multiprocessing and execution of multiple processes
             - a trace is a list of the sequence of instructions used to characterize behavior
-            - a dispatcher isa small program responsible for switching between processes
+            - a dispatcher is a small program responsible for switching between processes
             - a state refers to the condition of a process
             - 2 state model: not running or running. when a process is created, a program control block is created and the process enters a not running state,
               when it is interrupted, it is also not running. 
@@ -61,6 +61,36 @@
                 - memory area where user applications run
                 - executes user programs and manages application level tasks
                 - makes sure that when a program crashes it doesnt affect other programs
-        
+
+    ** Professor Lecture 1 [2025-2-20 Thu]
+        *** Process States
+            - trace: behavior of an individual process by listing the sequence of instructions that execute for that process
+            - dispatcher: small program that switches the processor from one process to another 
+            - work together to read processes, after timeouts or I/O requests, dispatcher in main memory switches between processes
+            - I/O is really slow, so typically I/O requests get interrupted. we force the dispatcher to move to another process. process gets blocked, 
+              waits for the I/O to complete. 
+            - dispatcher runs most frequently, runs everytime two processes switch
+        *** Two-state process model
+            - if a process is on the CPU it means it is running. only one processor can run one process
+            - other processes not running is held in a queue data structure
+            - there are many many reasons why processes terminate
+        *** Five-state process model
+            - when a process is running, it can get timed-out and then goes into a ready queue, if the running process is waiting it is 
+              pushed into the blocked queue, any ready process in the ready queue gets dispatched back into the running queue.
+        *** Swapping/Suspended Processes (Six-state process model)
+            - swapping is needed because sometimes we can run out of memory, even though memory is upgraded still maxed out because OS maximizes 
+              resource usage
+            - if a process is not in the memory it cant be executed (suspended)
+            - if a process is waiting for an I/O it cant be executed either
+            - in order to run, it must be swapped back to be in the memory and therefore to be in the ready state again
+            - this extra step makes for the 6-state process model where blocked processes are suspended and swapped to have more memory and increase speed
+            - however, there is a design flaw where processes can be put back to square one because after it is blocked it may not be ready yet
+            - to fix this, we add two more queues, the blocked and ready suspended queues
+        *** Seven-state process model
+            - if a process is in the memory and waiting for an IO, then it is in blocked
+            - if a process is in the memory but not waiting for an IO, it is in running or ready
+            - if a process is not in the memory but waiting for an IO, it is blocked suspended
+            - if a process is not in the memory but not waiting for an IO, it is in the ready suspended
+            - not in memory means suspended
         
 
