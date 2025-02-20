@@ -170,5 +170,3 @@
         - two types of jobs the os needs to handle: heavy computing (cpu intensive) and heavy io (io intensive)
           - cpu intensive could be computing a 100x100 matrix 
           - io intensive could be reading and writing a lot of data to rewrite a data table/database
-        
-        
