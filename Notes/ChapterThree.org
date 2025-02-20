@@ -92,5 +92,10 @@
             - if a process is not in the memory but waiting for an IO, it is blocked suspended
             - if a process is not in the memory but not waiting for an IO, it is in the ready suspended
             - not in memory means suspended
+        *** Stacks
+            - last in first out
+            - fast and simple
+            - efficient, parameters and variables can be pushed or popped when needed
+        
         
 
