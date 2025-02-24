@@ -1,0 +1,60 @@
+* Chapter 4: Threads
+    ** Student Lecture 1 [2025-2-24 Mon]
+        Space for other presentations:
+        
+        
+        
+        *** Linux Tasks
+            - task_struct: a data structure in linux that represents a process or task. contains information on the following:
+                - execution state of a process
+                - scheduling information
+                - identifiers unique to each process
+                - interprocess communication
+                - links between processes to the parent processes
+                - timers for processes
+                - file system that allows for pointers to any files and directories that the process is using 
+                - address space that defines addresses assigned to the process
+                - processor specific context
+            - linux process/thread model:
+                - running, running or ready
+                - interruptible, blocked state and waiting for an event such as IO or signal from another process
+                - uninterruptible, blocked state and waiting directly for hardware conditions, not signals
+                - stopped, halted process and can only resume by positive action from another process
+                - zombie, process can be terminated but for some reason must have its task structure in the process table
+        *** Linux Threads
+            - modern unix like linux supports multiple kernel-level threads. 
+            - linux treats threads and processes similarly allowing for shared resources like files and memory
+            - new processes in linux are created by copying attributes of existing processes using clone() instead of fork(). allows for processes to share 
+              resources such as memory, file descriptors, and signal handlers, effectively functioning as threads within a single process. 
+            - clone flags:
+                - CLONE_NEWPID, creates new process ID namespace 
+                - CLONE_PARENT, allows for parent process sharing
+                - CLONE_VM, address spaces
+                - CLONE_FS, file system state
+                - etc.
+            - during context switches, if processes share the same address switching is easy. however, cloned processes dont share stacks, meaning for each process
+              it needs separate stacks to use
+        *** Linux Namespaces
+            - namespaces are associated with each process or processes. they are like a way of grouping processes. each group or namespace has a different 
+              view of the system. it allows and is important for linux lightweight virtualization, which is a method that allows for processes to believe they 
+              are the only processes in the system
+            - created by clone() system call, each namespace receives a parameter from the clone flags listed above
+            - also created by unshare() which is a call where a process is not created but a new namespace only is created with its attached clone flags
+            - namespaces:
+                - mount: provides the process with a specific view of the filesystem hierarchy. all file operations that the process does only applies to the
+                  filesystem that is visible to the process
+                - uts: unix timesharing, related to the uname system call, which provides info about the current kernel like the name (nodename) and network
+                  domain (domainname). the domainname is part of the network information service (NIS) which allows for multiple UNIX systems to share common
+                  configuration files. allows for easier system administration. important because it allows processes on the same system to have different names
+                  and configurations. containerization, where each container has its own hostname and domainname
+                - ipc: creates a separate environment for communication resources like sephamores and message queues. processes within the same ipc namespace
+                  can communicate with each other, while being isolated from other processes in other namespaces. good for security and containerization to ensure
+                  that other apps dont interfere with this IPC's resources. stands for interprocess communication
+                - pid: allows for different sets of processes to have the same process ID without conflicts. useful for checkpoint/restore in userspace (CRIU)
+                  to freeze a running application and save it to restore it later. CRIU used for process migration, container management, or system recovery either
+                  on the same machine or a different one 
+                - network: allows for isolation of the system resources associated with networking, each having their own network devices, IP addresses, etc. 
+                  allows for process or processes to have access to these network resources, but nothing else
+                - user: provide a container with its own set of UID's, separate from the parent allowing for assignment to to a new usernamespace with new PID 
+                  namespace and all other namespaces. when a new process is cloned, it can have access to all the resources of the parent process despite being
+                  a new process. sensitive security due to creating non priveledged containers
