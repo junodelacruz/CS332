@@ -1,9 +1,52 @@
 * Chapter 4: Threads
     ** Student Lecture 1 [2025-2-24 Mon]
-        Space for other presentations:
-        
-        
-        
+        *** Processes and Threads
+          - threads are smaller execution units within a process that allows for parallel executuion
+          - processes can have multiple threads execeuting within it 
+          - threads share memory with other threads within a process 
+          - threads have faster communication and context switching 
+          - thread life cycle:
+            - new, runnable, running, blocked, waiting, terminated
+          - thread creation:
+            - created with java 
+          - thread sync:
+            - mutexes, semaphores, monitors
+          - thread pools:
+            - manage multiple threads to improve cpu performance
+        *** Multithreading
+          - multiple threads running within a process to improve CPU utilization
+          - makes communication faster between processes
+          - single threaded:
+            - a process can only do one task at a time, bad efficiency
+          - multi threaded:
+            - allows a process to perform multiple Tasks
+          - advantages:
+            - faster to create threads over processes, faster context switching, multiple threads can run, shared memory and resources, etc.
+          - disadvantages:
+            - increases complexity, difficult debugging and conflicts between threads, too many threads leads to excessive context switching which can reduce performance
+        *** Threads
+          - user level threads:
+            - managed by application, not kernel
+            - kernel doesnt see the thread
+            - advantages: allows for thread switching without kernel level priveleges, faster since no system calls are needed, portaable
+            - disadvantages: system calls are blocking, entire process can get blocked because of one thread causing inefficiency
+            - jacketing: a method to convert a blocking system call to a non blocking system call to prevent the entire process from getting blocked
+            - writing an application as multiple processes instead as multiple threads: eliminates the advantages of having multiple threads
+          - kernel level threads:
+            - managed by kernel instead of application, applications use API to interact with the kernel threads, windows uses kernel level threads
+            - advantages: parallel execution, better responsiveness, multithreaded kernel which allows for multiple system routines to execute at the same time 
+            - disadvantages: high overhead which means that switching requires a mode switch between user and kernel, slower context switching, and higher latency
+        *** Multicore and Multithreading
+          - uses both user and kernel level threads. allows for improved performance
+          - user threads ask kernel threads for system resources, user manages application and kernel threads manage kernel
+          - multithreaded native application benefits from this combined approach, so does java, and multiinstance application where there are multiple instances that run
+            in parallel
+        *** Multithreaded Architecture
+          - solaris thread: unix based OS that implements multilevel thread support for scalability, stability, and high performance
+          - ULT, LWP, Kernel thread: three level multithreaded architecture made up of user level, lightweight process, and kernel threads
+          - LWP data structure: priority, signal mask, registers, stacks, resource usage and profiling data, and pointers
+          - state diagram: run, sleep, zombie, blocked, free 
+          - interrupts as threads: reduced overhead and increases performance, handled by kernel threads. each interrupt has their own ID, priority, context, and stack
         *** Linux Tasks
             - task_struct: a data structure in linux that represents a process or task. contains information on the following:
                 - execution state of a process
@@ -58,3 +101,13 @@
                 - user: provide a container with its own set of UID's, separate from the parent allowing for assignment to to a new usernamespace with new PID 
                   namespace and all other namespaces. when a new process is cloned, it can have access to all the resources of the parent process despite being
                   a new process. sensitive security due to creating non priveledged containers
+    ** Professor Lecture 1 [2025-2-24 Mon]
+      *** Threads
+        - useful for running different functions inside a process
+        - threads are useful to organize different functions (think about java functions and classes)
+        - good for parallel processing 
+        - breaks a process into threads, and then each CPU can simultaneously run the thread 
+        - benefits of threads in comparison to processes: fast to make, fast to switch, fast to terminate, lower cost to communicate 
+        - for processes to communicate, they need to go through the kernel to access the IPC to communicate to another process. however, with threads we can 
+          communicate with each other because they share the same memory, things are more control 
+        - 

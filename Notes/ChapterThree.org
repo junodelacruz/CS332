@@ -96,6 +96,27 @@
             - last in first out
             - fast and simple
             - efficient, parameters and variables can be pushed or popped when needed
+
+        ** Professor Lecture 2 [2025-2-24 Mon]
+            *** Kernel
+                - kernel is a program, that does not a process to execute, creates processes for application
+                - virtual memory address, each application believes its memory starts from address 0, but this is an illusion used to isolate processes
+                - each program gets its own space in the memory, yet each program believes it has the max memory available
+                - address 0 has 1 byte, if a system is a 32 bit system it can manage 4 GB because 2^32 = 2^1 x 2^10 x 2^10 x 2^10
+                - if machine is 32 bit system, every process can use up to 32 GB of memory
+                - each process is given a lot of memory space, even though it is virtual
+                - kernel maintains its own data structure, its own stack, etc. 
+                - kernel runs functions on behalf of the process
+                - when processes need access to system resources, they switch to kernel mode through system calls
+            *** Execution within user processes
+                - kernel stack is inside the kernel space, which is within the userspace 
+            *** Unix SVR4 (system five release four)
+                - unix process states: user running, kernel running, zombie, etc 
+                - unix is a 9 state process model, with an additional user running and kernel running
+                - the reason for these two different running states is because when a process is runnning it can be running in two different modes, kernel or user 
+                - kernel provides a lot of services, and does a lot of housekeeping within a system, the kernel can be in a preempt state where it does a completely 
+                  different function such as accounting (from beginning of chapter 2) and then goes back to whatever the user is running
+                - sleep in this model is the same as blocked in the other model 
         
         
 
