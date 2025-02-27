@@ -93,8 +93,8 @@
             - if a process is not in the memory but not waiting for an IO, it is in the ready suspended
             - not in memory means suspended
         *** Stacks
-            - last in first out
-            - fast and simple
+            - last in first out (LIFO)
+            - fast and simpler than FIFO (first in first out)
             - efficient, parameters and variables can be pushed or popped when needed
 
         ** Professor Lecture 2 [2025-2-24 Mon]
@@ -118,5 +118,41 @@
                   different function such as accounting (from beginning of chapter 2) and then goes back to whatever the user is running
                 - sleep in this model is the same as blocked in the other model 
         
+        ** Professor Lecture 3 [2025-2-27 Thu]
+            *** Process image 
+                - made up of code (text), user data, pcb (process control block), stack 
+                - process control block three parts
+                    - PID (process ID), CPU (processor information including the registers and program counters), process control information (meta data of the process)
+            *** Interrupts 
+                - usually due to hardware, ex. timer interrupt and I/O device interrupt
+                - handled by a software called interrupt service routine (ISR) 
+                - for hardware interrupts, the cpu goes to sleep, wakes up with another task 
+            *** Traps 
+                - software interrupts, ex. system calls, page faults, divide by zero exceptions
+                - handled by a trap handler 
+            *** U area 
+                - all of the things controlled by the OS for controlling the users
+            *** UNIX 
+                - uses a kernel system call forK() to create new processes, uses a model parent to create a child process 
+                - after creation, the kernel can stay in the parent process, transfer control to the child process, or transfer control to another process
+            *** ch3 instructors notes slide 22 might be on the exam
+                - open ended question example
+                - at time 5, no I/O 
+                - b: blocked, r: ready/running, bs: blocked suspended, e: exit, rs: ready suspended
+                - Time | p1 p3 p5 p7 p8
+                ------------------------
+                - 5    | b  
+                -15    |       r 
+                -18    |          b
+                -20    |    b
+                -24    |       b
+                -28    |       bs
+                -33    |    r
+                -36    | r
+                -38    |             e
+                -40    |       rs
+                -44    |       r
+                -48    |          r
+
         
 

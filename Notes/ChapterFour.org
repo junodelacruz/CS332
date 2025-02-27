@@ -107,7 +107,25 @@
         - threads are useful to organize different functions (think about java functions and classes)
         - good for parallel processing 
         - breaks a process into threads, and then each CPU can simultaneously run the thread 
-        - benefits of threads in comparison to processes: fast to make, fast to switch, fast to terminate, lower cost to communicate 
+        - benefits of threads in comparison to processes: fast to make, fast to switch, fast to terminate, lower cost to communicate (easier)
         - for processes to communicate, they need to go through the kernel to access the IPC to communicate to another process. however, with threads we can 
           communicate with each other because they share the same memory, things are more control 
-        - 
+    ** Professor Lecture 2 [2025-2-27 Thu]
+      *** Threads 
+        - processes are not dispatched, threads are dispached now 
+        - each thread has a different user stack and kernel stack 
+        - in a model for a process, each thread has their own user stack and control stack, along with their own thread control block. the entire process itself has 
+          its own process control block too. 
+        - threads have their own states too: 
+          - running, ready, blocked. 
+          - thread operations: spawn block unblock finish
+        - history of threads:
+          - ULTs (user level threads): kernel only recognizes processes, not threads. many threads to one process (threads to kernel)
+        - state model for threads and process:
+          - if process wants to make an I/O, kernel blocks, kernel recognizes it because it only recognizes the process, kernel does not change the 
+            state of the threads, but everything inluding the threads freezes because the process is no longer getting power from the CPU 
+          - the threads maintain their states even when the process is blocked 
+          - the thread that is ready first runs next, first come first serve 
+          - programmers have control over what thread to run next, it is not in control of the dispatcher
+        - jacketing is like a fake system call to prevent blocking of entire process 
+        - in KLT, if one thread is blocked the other threads can perform that same blocked process, but KLT is 30 times slower than ULT, but faster to finish processes 
