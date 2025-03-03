@@ -50,7 +50,7 @@
             
         *** Execution of Operating Systems
             - nonprocess kernel: 
-                - executes the ernal outside of any processes, OS has its own memory that controls calls and returns
+                - executes the kernal outside of any processes, OS has its own memory that controls calls and returns
                 - handles memory management, hardware execution, and interrupt handling
                 - OS can restore the context of the interrupted process
             - introducing process image:

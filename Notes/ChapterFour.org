@@ -129,3 +129,24 @@
           - programmers have control over what thread to run next, it is not in control of the dispatcher
         - jacketing is like a fake system call to prevent blocking of entire process 
         - in KLT, if one thread is blocked the other threads can perform that same blocked process, but KLT is 30 times slower than ULT, but faster to finish processes 
+      ** Professor Lecture 3 [2025-3-3 Mon]
+        *** Amhdals Law
+          - theoretical calculation for speedup (search up the equation) 
+          - S, the serial portion cannot be 0 because the processor needs to start with one thread
+          - on graphs chart in instructors notes, although threads are good, more processes makes the speedup slower. this is because of syncrhonization, which is 
+            when threads can syncrhonize and use the same resources. however with too many threads, there is too much to handle, communication is hard.
+        *** Solaris process 
+          - unique because it has three levels, userlevel threads, lightweight processes (LWP object), and kernel threads.
+          - three characteristics that make OS good: efficient resource manager, good UI for accessibility, and easy to evolve. solaris is good for evolution
+          - solaris thread state model: run is ready, and onproc is running 
+            - zombie is used so threads can be replaced (housekeeping) dereference the memory and remove everything so that the thread can become -> free state
+            - threads are not destroyed, but recycled
+            - forces threads to reuse the cache to speed up the response time 
+        *** Linux Threads
+          - Linux creates tasks, and has group ID's, so it is easy for processes to communicate. however, linux processes iare not fast to make, 
+            fast to switch, and fast to terminate.
+          - linux only supports tasks, but has threads. it does not distinguish between threads and tasks/processes
+        *** Linux Process State Model
+          - when process is in the interruptible state, it listens for signals. in the uninterruptible state, it is blocked, only waiting for hardware signals 
+        
+
