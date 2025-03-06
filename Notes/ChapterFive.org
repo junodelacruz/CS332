@@ -1,3 +1,52 @@
-* Chapter 5: Concurrency, Mutal Exclusion and Synchronization
- ** Professor Lecture 1 
-    *** 
+* Chapter 5: Concurrency, Mutal Exclusion and Synchronization 
+ ** Student Lecture 1 [2025-3-6 Thu]
+    *** Message Passing
+      - 2 requirements must be met: synchronization and communication
+      - process sends information as a message to destination process
+      - synchronization: 
+         - sent executed: sender is blocked until the message is received
+         - receieve executed: it is received and execution continues
+         - blocked send and blocking recieve: both blocked until message is delivered
+         - nonblocking send and blocking recieve (most useful)
+         - nonblocking send and nonblocking recieve
+         - non blocking send has an error that causes process to repeatedly generate messages
+         - blocking recieve, if message is lost or sender process fails, receiving process could be blocked
+      - addressing: used for specifying the reciever and sender in send and receive primitives
+         - direct addressing: send primitive includes a specific identifier in parameter for the destination process 
+         - indirect addressing: messages are sent to and recieved form a shared data structure containing queues (mailboxes) that temporarily hold them
+           (better flexibility)
+      - processes and mailboxes: 
+         - one reciever: ports and mailboxes are statically associated to a particular process for 
+      - general message format: header and body
+      - messages are queued and retrieved through FIFO (first in first out) (priority based) 
+      - mailbox can be used by yall processes to send and recieve
+      - messages function as tokens that are passed from process to process 
+   *** Mutual Exclusion
+      - in uniprocessor system, processes execute one by one, mutual exclusion can be ensured by preventing a process from being interrupted. 
+      - disadvantages: efficiency lost, eliminates concurrency, doesnt work in multiprocessor systems because multiprocessor systems can execute concurrently
+      - in multiprocessor, mutual exclusion occurs when a processor accesse a location in memory as other processes will be barred from accesing the same location, entering
+        a busy/spinning waiting mode
+      - implementation of machine instructions:
+         - compare and swap instruction:
+            - compares the memory location with the test value, if the memory location does store the test value, it will be swapped with the new value. returns the old value 
+            from the memory location. other versions may return a boolean value, true if switched or false if not. 
+         - exchange instruction:
+            - exchanges the contents of a register with that of a memory location 
+      - advantages: instructions are applicable to any number of processors sharing memory, the instructions are simply making it east to check if it runs 
+        properly, allows support to multiple critical secitons
+      - disadvantages: while busy, consumes process time, some processes can be not chosen, deadlocking is possible 
+      - semaphores: an integer value used for signaling between proocesses 
+         - positive value: number of processes that can issue semWait and immediately continue to execute 
+         - zero value
+         - negative value 
+      - binary sephamores: 0 or 1, 0 means process is blocked, 1 means change to 0 and continue execution
+      - blocked processes are placed in a queue, using FIFO to unblock the longest blocked processes 
+      - locks blocks other processes, semaphores manages access through signaling, hardware support ensures atomic execution 
+      - producer/consumer problem: solved by using semaphores to count the number of items in the buffer and the number of spaces.
+      - semaphores used to prevent deadlocks 
+   *** Monitors and Readers/Writers Problems 
+      - monitors are an alternative to semaphores, instead of using ints they use conditions, it is a programming language construct that is easy to control 
+         - monitors with signals
+         - monitors with notify and broadcast 
+      - readers and writers problem is if there are multiple readers and writers trying to access shared data. semaphores control access so that multiple readers can read. 
+      
