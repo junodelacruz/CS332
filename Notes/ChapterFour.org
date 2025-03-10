@@ -28,10 +28,10 @@
           - user level threads:
             - managed by application, not kernel
             - kernel doesnt see the thread
-            - advantages: allows for thread switching without kernel level priveleges, faster since no system calls are needed, portaable
+            - advantages: allows for thread switching without kernel level priveleges, faster since no system calls are needed, portable
             - disadvantages: system calls are blocking, entire process can get blocked because of one thread causing inefficiency
             - jacketing: a method to convert a blocking system call to a non blocking system call to prevent the entire process from getting blocked
-            - writing an application as multiple processes instead as multiple threads: eliminates the advantages of having multiple threads
+            - writing an application as multiple processes instead as multiple threads: eliminates the advantages of h`aving multiple threads
           - kernel level threads:
             - managed by kernel instead of application, applications use API to interact with the kernel threads, windows uses kernel level threads
             - advantages: parallel execution, better responsiveness, multithreaded kernel which allows for multiple system routines to execute at the same time 

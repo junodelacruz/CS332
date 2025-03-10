@@ -33,7 +33,7 @@
          - exchange instruction:
             - exchanges the contents of a register with that of a memory location 
       - advantages: instructions are applicable to any number of processors sharing memory, the instructions are simply making it east to check if it runs 
-        properly, allows support to multiple critical secitons
+        properly, allows support to multiple critical sections
       - disadvantages: while busy, consumes process time, some processes can be not chosen, deadlocking is possible 
       - semaphores: an integer value used for signaling between proocesses 
          - positive value: number of processes that can issue semWait and immediately continue to execute 
@@ -49,4 +49,19 @@
          - monitors with signals
          - monitors with notify and broadcast 
       - readers and writers problem is if there are multiple readers and writers trying to access shared data. semaphores control access so that multiple readers can read. 
-      
+** Professor Lecture 1 [2025-3-10 Mon]
+   *** Race Condition 
+         - final result depends on the order of execution. 
+         - to solve race condition, use mutual exclusion (restroom example) entrance lock, mutual exclusion, the release lock
+   *** Mutual exclusion
+      - if interrupts are disabled, there is no race condition because all the processes run at once. disabled interrupts eliminates checking, causing skips in the process. 
+      - interrupts disabled and mutual exclusion are a bad thing, since it comes with many problems. 
+      - an answer?: hardware support, ask the hardware to compare and exchange instructions. checks and compares two values (the default value and the new value), 
+         and swaps them if the new value is the same as the defafult value. (basically the doctor example, vacant or occupied only one person allowed in at once)
+      - atomic operation: non interruptible processes through hardware design through special hardware instruction, multiple instructions working as a single one 
+      - processes can only be interrupted after the process is done checking 
+      - exchange instruction: works exactly like compare and swap, except opposite. it swaps, and then checks. 
+   *** Semaphores 
+      - every line of code between semWait and semSignal are critical sections 
+      - -1 means there is one process that is blocked in the queue, -2 means 2 processes that are in the blocked queue, 0 means 0, etc. 
+
