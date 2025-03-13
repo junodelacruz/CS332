@@ -6,20 +6,20 @@
       - synchronization: 
          - sent executed: sender is blocked until the message is received
          - receieve executed: it is received and execution continues
-         - blocked send and blocking recieve: both blocked until message is delivered
-         - nonblocking send and blocking recieve (most useful)
-         - nonblocking send and nonblocking recieve
+         - blocked send and blocking receive: both blocked until message is delivered
+         - nonblocking send and blocking receive (most useful)
+         - nonblocking send and nonblocking receive
          - non blocking send has an error that causes process to repeatedly generate messages
-         - blocking recieve, if message is lost or sender process fails, receiving process could be blocked
-      - addressing: used for specifying the reciever and sender in send and receive primitives
+         - blocking receive, if message is lost or sender process fails, receiving process could be blocked
+      - addressing: used for specifying the receiver and sender in send and receive primitives
          - direct addressing: send primitive includes a specific identifier in parameter for the destination process 
-         - indirect addressing: messages are sent to and recieved form a shared data structure containing queues (mailboxes) that temporarily hold them
+         - indirect addressing: messages are sent to and received form a shared data structure containing queues (mailboxes) that temporarily hold them
            (better flexibility)
       - processes and mailboxes: 
-         - one reciever: ports and mailboxes are statically associated to a particular process for 
+         - one receiver: ports and mailboxes are statically associated to a particular process for 
       - general message format: header and body
       - messages are queued and retrieved through FIFO (first in first out) (priority based) 
-      - mailbox can be used by yall processes to send and recieve
+      - mailbox can be used by yall processes to send and receive
       - messages function as tokens that are passed from process to process 
    *** Mutual Exclusion
       - in uniprocessor system, processes execute one by one, mutual exclusion can be ensured by preventing a process from being interrupted. 
@@ -35,7 +35,7 @@
       - advantages: instructions are applicable to any number of processors sharing memory, the instructions are simply making it east to check if it runs 
         properly, allows support to multiple critical sections
       - disadvantages: while busy, consumes process time, some processes can be not chosen, deadlocking is possible 
-      - semaphores: an integer value used for signaling between proocesses 
+      - semaphores: an integer value used for signaling between processes 
          - positive value: number of processes that can issue semWait and immediately continue to execute 
          - zero value
          - negative value 
@@ -49,6 +49,7 @@
          - monitors with signals
          - monitors with notify and broadcast 
       - readers and writers problem is if there are multiple readers and writers trying to access shared data. semaphores control access so that multiple readers can read. 
+
 ** Professor Lecture 1 [2025-3-10 Mon]
    *** Race Condition 
          - final result depends on the order of execution. 
@@ -64,4 +65,31 @@
    *** Semaphores 
       - every line of code between semWait and semSignal are critical sections 
       - -1 means there is one process that is blocked in the queue, -2 means 2 processes that are in the blocked queue, 0 means 0, etc. 
+
+** Professor Lecture 2  [2025-3-13 Thu]
+   *** Spinlock/Semaphores
+      - to prevent spinlock without the use of semaphores, add a sleep feature
+      - QUESTION ON THE MIDTERM: slide 35 table 
+      - slide #41, semSignal performs the n++ 
+   *** Monitor Characteristics
+      - slide #42 
+      - first definition is similar to object oriented programming, scope of local variables. it is encapsulation. 
+      - a monitor supports synchronization using condition variables, which have functions like cwait and csignal (similar to semamphores) the only difference
+        is that the monitor has control of these functions, not the programmer. all the programmer can do is use the library that contains the monitor.
+   *** Messaging 
+      - two functions, send and receive. to make a critical section, start with receive and then end with send.
+      - blocking receive() to close, critical section, send() to reopen 
+      - blocking send() means that you need to wait for confirmation from the other side 
+      - blocking send and blocking receive is restrictive, there are no rooms for mistakes. however, this process is slow because it needs to wait for confirmation 
+      - nonblocking send, blocking receive: most useful combination because the sender keeps going until the receiver gets the message 
+      - nonblocking send, nonblocking receive: no party waits, unsecure. 
+      - general message format: slide #53, format is similar to ip packets (OS and networking formats for messages are similar) 
+      - NOTE: a critical section is a section of code that needs to be executed without outside interference, also critical sections need to be 
+        as short as possible. this is because if they are long, you will be blocking other processes from happening. 
+   *** Readers/Writers Problems
+      - readers have priority, readers can block writers, writers can block writers
+      - in the reader function there are 2 critical sections each with 2 lines of code
+      - in the writer function there is only 1 line of code in the critical section 
+
+      
 
