@@ -24,7 +24,8 @@
    *** Mutual Exclusion
       - in uniprocessor system, processes execute one by one, mutual exclusion can be ensured by preventing a process from being interrupted. 
       - disadvantages: efficiency lost, eliminates concurrency, doesnt work in multiprocessor systems because multiprocessor systems can execute concurrently
-      - in multiprocessor, mutual exclusion occurs when a processor accesse a location in memory as other processes will be barred from accesing the same location, entering
+      - in multiprocessor, mutual exclusion occurs when a processor accesse 
+      a location in memory as other processes will be barred from accesing the same location, entering
         a busy/spinning waiting mode
       - implementation of machine instructions:
          - compare and swap instruction:

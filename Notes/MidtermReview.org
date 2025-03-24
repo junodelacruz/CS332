@@ -1,0 +1,32 @@
+* Midterm Open Ended Questions Review [2025-3-24 Mon]
+    ** Multiprogramming Example Chapter 2
+        - uniprogramming:
+            - CPU util: cpu usage x duration for each job added, divided by total duration (0.7x5 + 0.10x15 + 0.10x10)/30 = 20%
+            - memory util: check each job's memory usage, and check the total computer memory. each memory percentage times the duration of the job all over the total duration: 
+          [(50/250)x5 + (100/250)x15 + (75/250)x10]/30 = 33%
+            - disk util: only one of the job uses the disk (job 3) for 10 minutes. 10/30 = 33%
+            - throughput: 6 jobs in one hour because 3 jobs in 30 minutes total 
+            - mean response time: for uniprogramming since each runs in sequence, we add the durations of them sequentially divided by total number
+              of jobs: (5+20+30)/3 
+        - multiprogramming:
+            - CPU Util: rather than the total duration being 30 minutes, it would be 15 minutes because the longest job is job 2, and all the other 
+              jobs are being executed at the same time. CPU util for multiprogramming: 40% 
+            - memory util: same thing, replace denominator with maximum time of the job, in this case 15 minutes.
+            - disk util: same thing, replace denominator. 10/15 = 66.6%
+            - throughput: 12 jobs in one hour because 3 jobs in 15 minutes total 
+            - mean response time: for multiprogramming, we just add the durations themselves: (5+15+10)/3
+    ** Other Examples: 
+        - Example One: Max I/O Wait:
+            - 4GB - 512MB = 3.5 GB. 3.5/256 = 14 
+            - (x)^14 where x is the probabilty the CPU is waiting for an IO 
+            - log (x^14) = -1/7, x = 10^-1/7
+        - Example Two: parallel computing
+            - degree of multiprogramming is 2 because 2 jobs. 0.5 is the probability the CPU is waiting for IO. (0.5)^2 = 0.25.
+            - 1-0.25 = 75% util
+            - to compute how long it will take: 40 minutes/0.75 util = 53.33 minutes 
+        - maximum number of jobs: 
+            - 25//4 = 6
+            - maximum number of jobs at once: 6 + 1 = 7 jobs. 1 comes from the additional 4th drive that we need towards the end of the operation, we allocated it 
+            - what is the maximum of tape drives that may be left idle: 4 because each job is using at least 3 drives. 21 drives in total, and we havae 25 so 25-21 = 4.
+        
+
