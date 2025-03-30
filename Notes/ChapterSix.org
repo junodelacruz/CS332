@@ -38,7 +38,7 @@
                     - state: is the current allocation of resources to processes. it consists of the two vectors and two matrices as defined above. (resource, available, claim, allocation)
                     - safe state: state in which there is at least one sequence of resource allocations to processes that does not result in a deadlock, meaning all of the processes can run
                       to completion. 
-                    - unsafe state: is a state that is not safe, and can cause failure. 
+                    - unsafe state: is a state that is not safe, and can cause issues. 
                 - condition of for safety:
                     -  Cij - Aij ≤ Vj for all j (insert formula, page 302 of textbook)
                     - basically, where C is the claim matrix, A is the allocation matrix, we are checking if the difference between the maximum requirement and the current allocation for any process
