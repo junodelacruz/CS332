@@ -1,6 +1,9 @@
 * Chapter 6: Concurrency, Deadlock and Starvation
     ** Student Lecture 1 [2025-3-31 Mon]
 
+        *** Starvation 
+            - occurs when a process is indefinitely blocked from accessing a resource or making progress even though it is ready to execute
+
         *** Concurrency 
             - Deadlock:
                 - blocking of processes due to communication errors or competition
@@ -8,7 +11,7 @@
                 - consumable resources can be created and destroyed, used only once (interrupts, signals, messages, etc.)
                     - happens when two processes are waiting on each other indefinitely, for example both processes are waiting to recieve a message but none are sending
                     - another example is when processes are requesting memory but there is not enough 
-                - conditions for deadlock: mutual exlcusion, hold and wait, no preemption, circular wait 
+                - conditions for deadlock: mutual exclusion, hold and wait, no preemption, circular wait 
                 - approaches: deadlock prevention, deadlock avoidance, deadlock detection and recovery (note: no one strategy deals with all types of deadlock)
         
         *** Deadlock Prevention 
@@ -135,3 +138,17 @@
                     - semaphores:
                         - binary sempahores
                         - counting semaphores
+
+        ** Professor Lecture 1 [2025-3-31 Mon] 
+            *** Car Example For Conditions 
+                - there is mutual exclusion because only one can go at once 
+                - there is no no preemption because it means one car is more important than another, which is not true in this example 
+            
+            *** Joint Progress Diagram 
+                - the processes request for A and B resources consecutively, which can cause deadlock because multiple processes are requesting the same resource. 
+                - however, since they request them in a different order, there is no deadlock.
+                - this is a way for mutual exclusion to occcur, so only one process gets on thing at a time. 
+                - if one process is faster than the other and gets hold of the resoures and completes faster, it will not cause deadlock. 
+                - deadlock can occur here, but it will only occur in the situation where both are holding the same resource. 
+
+            
