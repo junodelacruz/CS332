@@ -1,6 +1,29 @@
 * Chapter 6: Concurrency, Deadlock and Starvation
     ** Student Lecture 1 [2025-3-31 Mon]
-        # insert other groups
+
+        *** Concurrency 
+            - Deadlock:
+                - blocking of processes due to communication errors or competition
+                - reusable resources used by one process at a time and are not depleted
+                - consumable resources can be created and destroyed, used only once (interrupts, signals, messages, etc.)
+                    - happens when two processes are waiting on each other indefinitely, for example both processes are waiting to recieve a message but none are sending
+                    - another example is when processes are requesting memory but there is not enough 
+                - conditions for deadlock: mutual exlcusion, hold and wait, no preemption, circular wait 
+                - approaches: deadlock prevention, deadlock avoidance, deadlock detection and recovery (note: no one strategy deals with all types of deadlock)
+        
+        *** Deadlock Prevention 
+            - conditions: 
+                - mutual exlcusion: ony one process can use a resource at any given time 
+                - hold and wait: a process holding at least one resource is waiting to acquire aditional resources held by other processes 
+                - no preemption: resources cannot be forcibly taken from a process, they must be released voluntarily
+                - circular wait: a closed chain of processes exists, each waiting for a resource which is help by another process in the chain
+            - prevention: the system eliminates one or more of the four necessary conditions 
+                - mutual exclusion: uses locks and read-only access for files or databases to allow concurrent access to resources. 
+                - hold and wait: require processes to request all needed resrrouces upfront before execution begins. or, ensure a process can only requuest resources when it holds none.
+                - preemption: if a process requests a resource that is unavailable, it must release all currently held resrouces and re-request everything. the OS may be allowed to preempt 
+                  resources from lower-priority processes. 
+                - circular wait: impose a total ordering of all resource types (R1< R2 < R3). or, require processes to request resources in increasing order only. 
+
         *** Deadlock Avoidance
             - Deadlock Avoidance Concept:
                 - necessary conditions to prevent deadlock: mutual exclusion, hold and wait, no preemption
@@ -80,3 +103,35 @@
                     - the processes under consideration must be independent, that is the order in which they execute must be unconstrained by any synchronization requirements 
                     - there must be a fixed number of resources to allocate 
                     - no process may exit while holding resources
+
+        *** Deadlock Detection and UNIX Mechanisms 
+            - Deadlock detection: 
+                - allow every single resource request to go through whenever possible and check deadlocks periodically and deal with the consequences as they come. 
+                - what if a deadlock check is positive?: 
+                    - 1. abort all deadlocked processes (wasted resources)
+                    - 2. use a checkpoint system (process state backups), revert back to the original state where it isn't deadlocked (more complex and more memory for these checkpoints)
+                    - 3. abort deadlocked processes one by one 
+                    - 4. preempt resources from deadlocked processes until resolved (can be unstable)
+                - deadlock checks:
+                    - done through vectors and matrices storing information on process and resources 
+            - UNIX Concurrency Mechanisms: 
+                IPC forms:
+                    - pipes:
+                        - data and communitcation goes in one direction 
+                        - unnames pipes: used for communication between related processes, uses pipe() system call, temporary 
+                        - named pipes: fifos, used for communication between unrelated processes, uses mkfifo() system call 
+                    - messages: 
+                        - mailbox sending and recieving things. 
+                        - msgsnd()
+                        - msgcvr()
+                        - message is a data structure that uses queues to store messages sent by one process until they are retrieved by another process
+                    - signals: 
+                        - similar to hardware interrupts, but just for software. 
+                        - reations:
+                            - performing a default action 
+                            - handling the signal 
+                            - ignoring the signal
+                        - ex. sigint (ctrl-c to stop running a program)
+                    - semaphores:
+                        - binary sempahores
+                        - counting semaphores
