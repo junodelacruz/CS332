@@ -1,3 +1,37 @@
 * Chapter 7 Memory Management
-    ** Student Lecture 1
-        *** 
+    ** Student Lecture 1 [2025-4-10 Thu]
+        *** Memory Partitioning
+            - management of memory with paging, segmentation, and partitioning. 
+            - fixed partitioning - static number of blocks or partitions 
+                - disadvantages - wasting memory 
+            - dynamic partitioning - variable, based on what each process needs 
+                - placement algorithms: first fit, best fit, etc. 
+            - buddy system, both foxed and dynamic partitioning
+        
+        *** Memory Management Requirements 
+            - relocation: moving programs in and out of memory during execution, swapping out allows for better efficient utilization 
+            - protection: ensures that each process is shielded from other processes that dont have permission
+            - sharing: allows multiple processes to access the same memory content, supports IPC for better multitasking
+            - logical organization: programs are divided into sections and each section is managed and accessed independently, enhances modular programming and easier debugging 
+            - physical organization: complex and time consuming, so use overlaying but still complex. they do this to prevent errors. 
+
+        *** Paging 
+            - OS divides memory into equal sized chunks. 
+            - processes get divided into pages, main memory gets divided into frames (physical)
+            - not visible to programmer
+            - internal fragmentation 
+            
+        *** Segmentation 
+            - divides a program into logical segments like code, stack, data, etc. 
+            - each segment is loaded into the memory and are for different purposes 
+            - visible to programmer
+            - external fragmentation 
+            - flexibility 
+            
+    ** Professor Lecture 1 [2025-4-10 Thu]
+        - external fragmentation: free space between usued space that is too small to use for anything
+        - internal fragmentation: unused space in an allocated partition 
+        - fixed partitioning: has equal size partitioning and unequal size partitioning (more bottleneck, and increase capaciity)
+        - there is no internal fragmentation in dynamic partitioning because it dynamically changes the partitions based on how much memory a process needs.
+        - the longer it runs, dynamic partitioning however has external fragmentation because it ends up with gaps
+        - the way to fix it is compaction (defragmentation), moving the processes bit by bit upwards to compact the partitions together.
