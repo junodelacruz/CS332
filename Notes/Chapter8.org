@@ -1,0 +1,61 @@
+* Chapter 8 Virtual Memory 
+    ** Student Lecture [2025-4-16 Wed]
+        *** Segmentation 
+            - Segmentation allows the programmer to view memory as consisting of multiple address spaces or segments.
+            - Each segment table entry contains the starting address of the corresponding segment in main memory and the length of the segment
+            - A bit is needed to determine if the segment is already in main memory
+            - Another bit is needed to determine if the segment has been modified since it was  loaded in main memory
+            - advantages: 
+                - growing datastructures (dynamic allocation, non contiguous storage avoiding fragmentation, memory efficiency)
+                - modular compilation, faster development, version control friendly 
+                - sharing among processes (code reusability, lower memory usaage, process collaboration)
+                - protection mechanisms (isolation of segments, crash containment, security enforcement)
+        
+        *** Segmentation Organization and Implementation    
+            - segment table structure: 
+                - each process has its own segment table consisting of the starting address in memory, the length of the segment, and some control bits for protection and management 
+                - segments can consist of the code, data, stack, etc. 
+            - control bits in segment table:
+                - control bits are flags used by the OS that help keep track of memory and control who can use it and how
+                - present bit: Is the segment currently in RAM or not. If its not present then it might need to be loaded from disk.
+                - modify bit: Has the segment been written to or changed in any way. If yes, then the segment has to be removed from memory and saved to disk.
+                - sharing bits: Determines what type of access is allowed (ex. Read-only, Read/Write, etc).
+        
+        *** Combined Paging and Segmentation
+            - Strengths of Paging vs. Segmentation: 
+                - paging Strengths:
+                    - transparent to programmer 
+                    - eliminates external fragmentation 
+                    - efficient use of main memory 
+                    - fixed equal size pieces makes it possible to develop sophisticated memory management algorithms that exploit the behavior of programs   
+                - segmentation Strengths:
+                    - visible to programmer
+                    - similar strengths to paging 
+                    - handles growing data structures 
+                    - modularity (better construction)
+                    - support for sharing and protection 
+                - thus we have a solution, which is to combine the advantages of paging and segmentation 
+            - Combined paging/segmentation
+                - in combined paging and segmenation: 
+                    - user's address space is broken up into a number of segments at the discretion of the programmer 
+                    - each segment is broken into a number of fixed-size pages, equal in length to the main memory frame 
+                    - basically, each process is broken up into segments, and then each segments is broken up again into pages. 
+                    - each segment contains a page table, where each page contains the physical memory frames.
+            - Structure of segment and page table entries
+                - figure 8.1c
+                - as you can see in this figure is the structure of segment and page table entires. 
+                - in combined paging and segmentation, the virtual address contains the segment number, page number, and offset. 
+                - the segment table contains the control bits, length, and the segment base. 
+                - and the page table entry contains additional bits and frame numbers. 
+                - programmer point of view, a logical address consists of a segment number and segment offset 
+                - system point of view, the segment offset is viewed as a page number and page offset for a page within the specified segment 
+            - Address translation in combined segmentation/paging systems
+                - figure 8.12 
+                - so this figure shows how a virtual address is converted into a physical address used by the main memory
+                - every virtual address has the segment number, page number within the segment, and offset within the page 
+                - the seg number points to an index in the segment table, which points to a page table. then we check the page number to find the index for the frame number, which is the physical frame in memory 
+                - the frame number and offset are used to compute the final phsyical address in memory 
+
+
+
+        
