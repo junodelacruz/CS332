@@ -56,6 +56,44 @@
                 - the seg number points to an index in the segment table, which points to a page table. then we check the page number to find the index for the frame number, which is the physical frame in memory 
                 - the frame number and offset are used to compute the final phsyical address in memory 
 
+        *** Protection, Sharing, and OS Policies
+            - Segmentation naturally supports protection and sharing policies
+            - Protection Mechanisms:
+                - Each segment table entry includes base and length
+                - Prevents programs from accessing memory beyond segment limits
+                - Inadvertent memory access can be controlled
+            - Sharing capabilities:
+                - Segments can be referenced in multiple process segment tables
+                - Enables efficient sharing of code/data between processes
+            - fetch policy:
+                - Determines when a page should be brought into main memory
+                - Demand Paging
+                    - Pages are brought into memory only when referenced
+                    -Initial execution causes many page faults
+                    - Gradually stabilizes as needed pages are loaded
+                    - Principle of locality ensures most future references will be to already-loaded pages
+                - Prepaging
+                    - Brings in additional pages beyond the one that caused a page fault
+                    - Takes advantage of how disks work - reading several adjacent pages takes almost the same time as reading just one
+                    - Reduces future page faults but wastes memory if extra pages arent used
+            - placement policy:
+                - Determines where in physical memory a process piece should reside
+                - In pure segmentation systems:
+                    - Important design issue
+                    - Policies like best-fit, first-fit, next-fit are relevant
+                    - Affects memory utilization and fragmentation
+                - In paging or combined systems:
+                    - Usually irrelevant due to fixed page sizes + any page can go in any available frame
+                    - Hardware performs address translation with equal efficiency regardless of frame location
+                - NUMA systems:
+                    - Non-Uniform Memory Access multiprocessors
+                    - Memory access time varies with distance between processor and memory module
+                    - Automatic placement strategies become important for performance optimization
+
+
+
+
+
 
 
         
