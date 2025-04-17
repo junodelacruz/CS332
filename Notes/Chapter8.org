@@ -39,7 +39,7 @@
                 - in combined paging and segmenation: 
                     - user's address space is broken up into a number of segments at the discretion of the programmer 
                     - each segment is broken into a number of fixed-size pages, equal in length to the main memory frame 
-                    - basically, each process is broken up into segments, and then each segments is broken up again into pages. 
+                    - basically, each process is broken up into segments, and then each segment is broken up again into pages. 
                     - each segment contains a page table, where each page contains the physical memory frames.
             - Structure of segment and page table entries
                 - figure 8.1c
@@ -49,6 +49,7 @@
                 - and the page table entry contains additional bits and frame numbers. 
                 - programmer point of view, a logical address consists of a segment number and segment offset 
                 - system point of view, the segment offset is viewed as a page number and page offset for a page within the specified segment 
+                - system view has a more complex perspective
             - Address translation in combined segmentation/paging systems
                 - figure 8.12 
                 - so this figure shows how a virtual address is converted into a physical address used by the main memory
