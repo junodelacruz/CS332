@@ -1,5 +1,5 @@
 * Chapter 8 Virtual Memory 
-    ** Student Lecture [2025-4-16 Wed]
+    ** Student Lecture [2025-4-17 Thu]
         *** Segmentation 
             - Segmentation allows the programmer to view memory as consisting of multiple address spaces or segments.
             - Each segment table entry contains the starting address of the corresponding segment in main memory and the length of the segment

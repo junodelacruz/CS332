@@ -1,0 +1,12 @@
+(notes have been lacking because all the information is posted on cavas anyways 😂)
+* Chapter 9 Single CPU Scheduling
+    ** Student Lecture [2025-4-24 Thu]
+        *** Types of Processor Schedule 
+            - Long-term, medium-term, short-term 
+            - long-term: from disk, new to ready, slowest 
+            - medium-term: swaps current executing process from main memory to disk, faster than long-term, slower-than short term, more control, lowers degree of multiprogramming 
+            - short-term: fastestm also known as the dispatcher 
+        
+        *** Scheduling Algorithms 
+            - objective is to allocate processor time optimizing certain aspects of system behavior. 
+            
